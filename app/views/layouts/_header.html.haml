@@ -1,8 +1,22 @@
 %header.navbar.navbar-fixed-top.navbar-inverse
   .container
     //= link_to image_tag('bbj_logo.png', alt: 'BJJ logo'), 'http://barcelonajiujitsu.com/', target: '_blank', id: 'logo'
-    = link_to 'Barcelona Jiu Jitsu', root_path, id: 'logo'
+    = link_to 'BCN Jiu Jitsu', root_path, id: 'logo'
     %nav
       %ul.nav.navbar-nav.navbar-right
+        %li= link_to 'Home', root_path
         %li= link_to 'Help', help_path
-        %li= link_to 'Log in', '#'
+        - if logged_in?
+          %li= link_to 'Users', users_path
+          %li.dropdown
+            %a.dropdown-toggle{'data-toggle' => 'dropdown', href: '#'}
+              = @current_user.name
+              %b.caret
+            %ul.dropdown-menu
+              %li= link_to 'Profile', current_user
+              %li= link_to 'Settings', '#'
+              %li.divider
+              %li
+                = link_to 'Log out', logout_path, method: :delete
+        - else
+          %li= link_to 'Log in', login_path
