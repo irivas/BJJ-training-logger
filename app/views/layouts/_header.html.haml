@@ -1,0 +1,8 @@
+%header.navbar.navbar-fixed-top.navbar-inverse
+  .container
+    //= link_to image_tag('bbj_logo.png', alt: 'BJJ logo'), 'http://barcelonajiujitsu.com/', target: '_blank', id: 'logo'
+    = link_to 'Barcelona Jiu Jitsu', root_path, id: 'logo'
+    %nav
+      %ul.nav.navbar-nav.navbar-right
+        %li= link_to 'Help', help_path
+        %li= link_to 'Log in', '#'
