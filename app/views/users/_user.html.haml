@@ -1,0 +1,11 @@
+%tr
+  %td= gravatar_for user, size: 40
+  %td= user.name
+  %td= user.surname
+  %td= user.email
+  %td= user.age
+  %td= user.role
+  - if @current_user.admin?
+    %td= link_to '', user, class: 'btn btn-default btn-xs glyphicon glyphicon-search'
+    %td= link_to '', edit_user_path(user), class: 'btn btn-warning btn-xs glyphicon glyphicon-pencil'
+    %td= link_to '', user, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'

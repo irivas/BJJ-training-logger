@@ -11,7 +11,6 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 
-gem 'will_paginate', '~> 3.1.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
@@ -43,6 +42,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'haml-rails', '~> 2.0'
 
+gem 'will_paginate', '3.1.7'
+gem 'bootstrap-will_paginate', '1.0.0'
+
 group :production do
   gem 'pg', '0.20.0'
 end
@@ -53,6 +55,7 @@ group :development, :test do
     # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '< 1.4'
   gem 'rspec-rails', '~> 3.8'
+  gem 'faker'
 end
 
 group :development do
@@ -72,7 +75,6 @@ group :test do
   gem 'chromedriver-helper'
   gem 'factory_bot_rails', '~> 4.0'
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'faker'
   gem 'database_cleaner'
   gem 'coveralls', require: false
 end

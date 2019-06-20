@@ -5,3 +5,29 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create!(
+  name: 'Israel',
+  surname: 'Rivas González',
+  email: 'irvsglez@gmail.com',
+  password: 'aaaaffff',
+  password_confirmation: 'aaaaffff',
+  admin: true)
+
+User.create!(
+  name: 'Manel',
+  email: 'manel@jj.com',
+  password: 'aaaa1111',
+  password_confirmation: 'aaaa1111')
+
+unless Rails.env.production?
+  50.times do |n|
+    name  = Faker::Name.name
+    email = "example-#{n+1}@bjj.com"
+    password = 'password'
+    User.create!(
+      name: name,
+      email: email,
+      password: password,
+      password_confirmation: password)
+  end
+end
