@@ -1,9 +1,10 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :validates_password
 
   before_save :downcase_email
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  FAIXAS = %w(Branca Azul Roxa Marrom Preta).freeze
   
   validates :name,  presence: true, length: { maximum: 50 }
   validates :email, presence: true,
@@ -13,7 +14,7 @@ class User < ApplicationRecord
 
   has_secure_password
   # we need to make an exception to the password validation if the password is empty for editing: allow_nil: true
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true, if: :should_validate?
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true, if: :validates_password?
   
   # Returns the hash digest of the given string.
   def self.digest(string)
@@ -42,10 +43,14 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
-  
+
+  def self.search(name)
+    where("name LIKE ? OR surname LIKE ?", "%#{name}%", "%#{name}%")
+  end
+
   private
-    def should_validate?
-      new_record?
+    def validates_password?
+      self.validates_password
     end
 
     def downcase_email

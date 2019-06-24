@@ -1,21 +1,15 @@
-%p#notice= notice
-%h1 Users
+//%p#notice= notice
+- provide(:title, 'Alumnos')
+%h1 Alumnos
 
-= will_paginate
-%table.table.table-hover
-  %thead
-    %tr
-      %th
-      %th Nombre 
-      %th Apellido
-      %th Email
-      %th Edad
-      %th Faixa
-  %tbody
-    .users
-      = render @users
+#search_form
+  = simple_form_for :search, label: 'nombre', url: users_path, method: :get, html: { class: 'form-inline' } do |f|
+    = f.input :name, input_html: { value: '' }, label: false
+    = f.submit 'Buscar', class: 'btn btn-primary', id: 'search_button'
 
-= will_paginate
+#users_list
+  = render 'users_list'
+  
 - if @current_user&.admin?
   %br/
   = link_to 'Create user', new_user_path, class: 'btn btn-primary'

@@ -1,0 +1,13 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th
+      %th Nombre 
+      %th Apellido
+      %th Email
+      %th Faixa
+      %th{colspan: '3'}
+  %tbody
+    .users
+      = render @users
+= will_paginate

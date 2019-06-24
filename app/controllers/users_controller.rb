@@ -3,11 +3,15 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :admin_user, only: :destroy
+  before_action :set_faixas, only: [:edit, :new, :create]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    name = params[:search][:name] if params[:search].present?
+
+    @users = User.search(name)
+    @users = @users.paginate(page: params[:page], per_page: 10).order(name: :asc)
   end
 
   # GET /users/1
@@ -29,7 +33,9 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.validates_password = false
 
+    #debugger
     respond_to do |format|
       if @user.save
         format.html do
@@ -103,5 +109,9 @@ class UsersController < ApplicationController
     # Confirms an admin user.
     def admin_user
       redirect_to(root_url) unless current_user.admin?
+    end
+
+    def set_faixas
+      @faixas = User::FAIXAS
     end
 end
