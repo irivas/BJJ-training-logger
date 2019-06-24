@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   before_action :admin_user, only: :destroy
   before_action :set_faixas, only: [:edit, :new, :create]
+  before_action :set_roles, only: [:edit, :new, :create]
 
   # GET /users
   # GET /users.json
@@ -89,7 +90,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :surname, :age, :email, :role, :password, :password_confirmation)
+      params.require(:user).permit(:name, :surname, :age, :email, :role, :belt, :password, :password_confirmation)
     end
 
     def logged_in_user
@@ -113,5 +114,9 @@ class UsersController < ApplicationController
 
     def set_faixas
       @faixas = User::FAIXAS
+    end
+
+    def set_roles
+      @roles = User::ROLES
     end
 end

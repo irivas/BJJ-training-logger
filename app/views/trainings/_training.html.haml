@@ -1,0 +1,10 @@
+%tr
+  %td= training.description
+  %td= training.date
+  %td= 'maestro'
+  %td= training.location
+  - if current_user.admin?
+    %td= link_to '', training, class: 'btn btn-default btn-xs glyphicon glyphicon-search'
+    %td= link_to '', edit_training_path(training), class: 'btn btn-warning btn-xs glyphicon glyphicon-pencil'
+    %td= link_to '', training, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs glyphicon glyphicon-trash'
+    

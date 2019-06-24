@@ -1,0 +1,12 @@
+%table.table.table-hover
+  %thead
+    %tr
+      %th Descripción
+      %th Fecha
+      %th Maestro
+      %th Gimnasio
+      %th{colspan: '3'}
+  %tbody
+    .trainings
+      = render @trainings
+= will_paginate

@@ -13,8 +13,11 @@
 = f.text_field :age, class: 'form-control'
 
 = f.label 'Faixa'
-= f.select :role, @faixas, {}, class: 'form-control'
-      
+= f.select :belt, @faixas, {}, class: 'form-control'
+
+= f.label 'Role'
+= f.select :role, @roles, {}, class: 'form-control'
+
 - if f.object.new_record?
   = f.label :password
   = f.password_field :password, class: 'form-control'

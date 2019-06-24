@@ -20,22 +20,23 @@
       %span.glyphicon.glyphicon-gift
       = @user.age
   %p
-    -case @user.role
+    -case @user.belt
     -when 'Branca'
       %span.glyphicon.glyphicon-pawn
-      = @user.role
+      = @user.belt
     -when 'Azul'
       %span.glyphicon.glyphicon-knight
-      = @user.role
+      = @user.belt
     -when 'Roxa'
       %span.glyphicon.glyphicon-bishop
-      = @user.role
+      = @user.belt
     -when 'Marrom'
       %span.glyphicon.glyphicon-tower
-      = @user.role
+      = @user.belt
     -when 'Preta'
       %span.glyphicon.glyphicon-queen
-      = @user.role        
+      = @user.belt
+  %p= @user.role
 .form-actions
-= link_to 'Back', users_path, class: 'btn btn-light btn-sm'
-= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary btn-sm'
+= link_to 'Atrás', users_path, class: 'btn btn-light btn-sm'
+= link_to 'Editar', edit_user_path(@user), class: 'btn btn-primary btn-sm'
