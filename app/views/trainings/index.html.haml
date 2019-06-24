@@ -1,0 +1,9 @@
+- provide(:title, 'Entrenamientos')
+%h1 Entrenamientos
+
+#trainings_list
+  = render 'trainings_list'
+  
+- if @current_user&.admin?
+  %br/
+  = link_to 'Create training', new_training_path, class: 'btn btn-primary'

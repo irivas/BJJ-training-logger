@@ -15,7 +15,7 @@ User.create!(
 
 User.create!(
   name: 'Manel',
-  email: 'manel@jj.com',
+  email: 'manel@bjj.com',
   password: 'aaaa1111',
   password_confirmation: 'aaaa1111')
 

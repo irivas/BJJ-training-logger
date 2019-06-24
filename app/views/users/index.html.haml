@@ -1,6 +1,6 @@
 //%p#notice= notice
-- provide(:title, 'Alumnos')
-%h1 Alumnos
+- provide(:title, 'Usuarios')
+%h1 Usuarios
 
 #search_form
   = simple_form_for :search, label: 'nombre', url: users_path, method: :get, html: { class: 'form-inline' } do |f|
@@ -12,4 +12,4 @@
   
 - if @current_user&.admin?
   %br/
-  = link_to 'Create user', new_user_path, class: 'btn btn-primary'
+  = link_to 'Crear', new_user_path, class: 'btn btn-primary'

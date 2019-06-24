@@ -1,10 +1,13 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :validates_password
 
+  has_many :user_trainings
+  has_many :trainings, through: :user_trainings
   before_save :downcase_email
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   FAIXAS = %w(Branca Azul Roxa Marrom Preta).freeze
+  ROLES = %w(Alumno Maestro)
   
   validates :name,  presence: true, length: { maximum: 50 }
   validates :email, presence: true,
@@ -25,6 +28,16 @@ class User < ApplicationRecord
   # Returns a random token.
   def self.new_token
     SecureRandom.urlsafe_base64
+  end
+
+  # Returns students.
+  def self.students
+    where(role: 'student')
+  end
+
+  # Returns teachers.
+  def self.teachers
+    where(role: 'teacher')
   end
     
   # Remembers a user in the database for use in persistent sessions.
