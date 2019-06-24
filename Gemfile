@@ -44,6 +44,7 @@ gem 'haml-rails', '~> 2.0'
 
 gem 'will_paginate', '3.1.7'
 gem 'bootstrap-will_paginate', '1.0.0'
+gem 'simple_form'
 
 group :production do
   gem 'pg', '0.20.0'

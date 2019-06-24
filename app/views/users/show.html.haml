@@ -4,24 +4,38 @@
     %section.user_info
       %h1
         = gravatar_for @user
-        = @user.name
+        %div
+          = @user.name
+        %div
+          = @user.surname
+      = image_tag('faixa_Branca.png', alt: 'White belt', class: 'belt')
 
 %p#notice= notice
-%p
-  %strong Name:
-  = @user.name
-%p
-  %strong Surname:
-  = @user.surname
-%p
-  %strong Email:
-  = @user.email
-%p
-  %strong Age:
-  = @user.age
-%p
-  %strong Role:
-  = @user.role
-= link_to 'Edit', edit_user_path(@user)
-|
-= link_to 'Back', users_path
+%div
+  %p
+    %span.glyphicon.glyphicon-envelope
+    = @user.email
+  -if @user.age.present?
+    %p
+      %span.glyphicon.glyphicon-gift
+      = @user.age
+  %p
+    -case @user.role
+    -when 'Branca'
+      %span.glyphicon.glyphicon-pawn
+      = @user.role
+    -when 'Azul'
+      %span.glyphicon.glyphicon-knight
+      = @user.role
+    -when 'Roxa'
+      %span.glyphicon.glyphicon-bishop
+      = @user.role
+    -when 'Marrom'
+      %span.glyphicon.glyphicon-tower
+      = @user.role
+    -when 'Preta'
+      %span.glyphicon.glyphicon-queen
+      = @user.role        
+.form-actions
+= link_to 'Back', users_path, class: 'btn btn-light btn-sm'
+= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary btn-sm'
